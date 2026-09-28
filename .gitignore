@@ -1,0 +1,4 @@
+__pycache__/
+*.py[cod]
+second_vision/history.json
+third_vision/memory/history/*.json
