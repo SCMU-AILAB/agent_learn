@@ -68,7 +68,11 @@ class memory:
             # json.load（不带 s）：把「文件把手」交给翻译官
             #   → 从文件里读出文字，解析成 Python 列表
             #   写成 json.loads(f) 会报错：loads 要的是字符串，不是把手
-            return json.load(f)
+            try:
+                return json.load(f)
+            except json.JSONDecodeError as e:
+                print(f"警告：历史文件读不了（{self.history}）：{e}")
+                return []
 
     def save_history(self,message):
         """把列表写进文件"""

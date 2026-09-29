@@ -8,5 +8,10 @@ while 1:
         ans = God.to_run(a)
         print(f"它说：{ans}")
     except KeyboardInterrupt:
+        print("")
+        print("再见!")
+        break
+    except EOFError:
+        print("")
         print("再见!")
         break
