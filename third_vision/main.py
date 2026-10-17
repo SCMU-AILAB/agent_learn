@@ -1,3 +1,6 @@
+# third_vision/main.py
+"""命令行入口：先选一个历史文件，然后循环接收提问并交给 Agent."""
+
 from agent import Agent
 
 God = Agent()

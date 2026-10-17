@@ -1,6 +1,10 @@
-import os
+# third_vision/llm.py
+"""模型接口：把消息和工具说明书发出去，拿回模型的一条回复（只留 role/content/tool_calls）."""
 
+import os
 import requests
+
+from config import TOOL_TIMEOUT
 
 API_KEY = os.getenv("OPENAI_API_KEY", "")
 BASE_URL = os.getenv("OPENAI_BASE_URL", "https://api.deepseek.com/v1").rstrip("/")
@@ -15,7 +19,7 @@ def ask(messages, tools=None):
         f"{BASE_URL}/chat/completions",
         headers={"Authorization": f"Bearer {API_KEY}"},
         json=body,
-        timeout=120,
+        timeout=TOOL_TIMEOUT,
     )
 
     resp.raise_for_status()

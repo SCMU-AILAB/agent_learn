@@ -1,3 +1,6 @@
+# third_vision/memory/memory.py
+"""记忆层：消息列表与 memory/history/<名字>.json 之间的读写（读有三道保险）."""
+
 import json
 import os
 

@@ -1,4 +1,7 @@
-from .tool_register import tr
+# third_vision/tools/cale.py
+"""计算器工具：表达式先过白名单，再用 eval 求值."""
+
+from .tool_register import tr, ToolPolicy
 
 
 @tr.register(
@@ -14,8 +17,12 @@ from .tool_register import tr
                 },
                 "required": ["expr"],
             },
-        },
-    }
+        }
+    },
+    ToolPolicy(
+        read_only=True,
+        idempotent=True
+    )
 )
 def cale(expr):
     if all(x in "1234567890/*-+()" for x in expr):  # 这里用白名单做边界

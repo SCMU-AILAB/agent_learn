@@ -1,6 +1,9 @@
+# third_vision/tools/get_time.py
+"""时间工具：按城市名返回本机当前时间（不做时区换算）."""
+
 from datetime import datetime
 
-from .tool_register import tr
+from .tool_register import tr, ToolPolicy
 
 
 @tr.register(
@@ -17,7 +20,11 @@ from .tool_register import tr
                 "required": ["city"],
             },
         },
-    }
+    },
+    ToolPolicy(
+        read_only=True,
+        idempotent=True
+    )
 )
 def get_time(city):
     return f"{city}时间:{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
